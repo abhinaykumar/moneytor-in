@@ -1,0 +1,47 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Stocks</h1>
+  </div>
+
+  <div class="col-sm-6 text-right">
+  <%= link_to new_stock_path, class: 'btn btn-primary' do %>
+    Add New Stock
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Name</th>
+    
+
+            <th>Investment date</th>
+            <th>Brokerage</th>
+            <th>Price</th>
+            
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @stocks.each do |stock| %>
+        <%= content_tag :tr, id: dom_id(stock), class: dom_class(stock) do %>
+          
+            <td><%= link_to stock.name, stock %></td>
+          
+
+                      <td><%= stock.investment_date %></td>
+                      <td><%= stock.brokerage %></td>
+                      <td><%= stock.price %></td>
+          
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
