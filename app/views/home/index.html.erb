@@ -1,12 +1,56 @@
 <div class="container-fluid">
-    <div class="row justify-content-start">
+    <div class="row justify-content-start mb-3">
         <div class="col-1 add-new">
             <div class="circle">
             </div>
             <div class="dropdown-content">
                 <a href="#">Mutual Funds</a>
                 <%= link_to "Stocks", new_stock_path %>
-                    <!-- <a href="#"></a> -->
+                <!-- <a href="#"></a> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="row justify-content-center mb-3">
+        <div class="col-8">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Stocks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mutual Funds</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Crypto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Savings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+
+                            <th>Name</th>
+
+
+                            <th>Investment date</th>
+                            <th>Brokerage</th>
+                            <th>Price</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
