@@ -1,4 +1,5 @@
 class StocksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
   # GET /stocks
@@ -24,7 +25,7 @@ class StocksController < ApplicationController
   # POST /stocks
   # POST /stocks.json
   def create
-    @stock = Stock.new(stock_params)
+    @stock = curren_user.stocks.build(stock_params)
 
     respond_to do |format|
       if @stock.save

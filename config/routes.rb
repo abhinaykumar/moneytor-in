@@ -3,6 +3,9 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   resources :stocks
   namespace :admin do
+    resources :portfolios
+    resources :asset_classes
+    resources :stocks
     resources :users
     resources :announcements
     resources :notifications
