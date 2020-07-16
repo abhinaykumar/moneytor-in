@@ -10,8 +10,9 @@ class AssetClassDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     name: Field::String,
+    internal_name: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -22,6 +23,7 @@ class AssetClassDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   id
   name
+  internal_name
   created_at
   updated_at
   ].freeze
@@ -31,6 +33,7 @@ class AssetClassDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   id
   name
+  internal_name
   created_at
   updated_at
   ].freeze
@@ -40,6 +43,7 @@ class AssetClassDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
   name
+  internal_name
   ].freeze
 
   # COLLECTION_FILTERS

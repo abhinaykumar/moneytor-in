@@ -10,4 +10,12 @@ class User < ApplicationRecord
   has_many :services
 
   has_many :portfolios
+
+  after_create :create_default_porfolio
+
+  private
+
+  def create_default_porfolio
+    Portfolio.create!(name: 'default', user: self)
+  end
 end

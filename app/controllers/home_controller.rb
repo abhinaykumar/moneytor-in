@@ -2,7 +2,12 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @asset_class = AssetClass.select(:name)
+    # AssetClass.first will always be Stocks
+    default_portfolio = current_user.portfolios.default
+    default_asset = 'stocks'
+    @asset = {}
+    @asset[default_asset.to_sym] = default_portfolio.stocks
+    @asset_classes = AssetClass.select(:name, :internal_name).order(:created_at)
   end
 
   def terms
