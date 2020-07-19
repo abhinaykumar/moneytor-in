@@ -69,3 +69,7 @@ gem 'sidekiq', '~> 6.0', '>= 6.0.3'
 gem 'sitemap_generator', '~> 6.1', '>= 6.1.2'
 gem 'whenever', require: false
 gem 'image_processing'
+
+
+gem 'jwt', '~> 2.2', '>= 2.2.1'
+gem 'fast_jsonapi', '~> 1.5'
