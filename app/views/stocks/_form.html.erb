@@ -1,4 +1,4 @@
-<%= form_with(model: stock, data: { controller: 'stock-form' }) do |form| %>
+<%= form_with(model: stock) do |form| %>
 <% if stock.errors.any? %>
 <div id="error_explanation">
     <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
@@ -11,9 +11,11 @@
 </div>
 <% end %>
 
-<div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control', placeholder: "Search for name of the company/stock", data: { target: "stock-form.body" } %>
+<div class="form-group" data-controller="autocomplete" data-autocomplete-url="<%= listed_stocks_path %>">
+    <%= form.text_field :name, class: 'form-control', placeholder: "Search for name of the company/stock", data: { target: "autocomplete.input" } %>
+    <%= form.hidden_field :listed_stock_id, data: { target: "autocomplete.hidden" } %>
+    <ul class="list-group" data-target="autocomplete.results">
+    </ul>
 </div>
 
 <div class="form-group">
@@ -22,7 +24,7 @@
 </div>
 
 <div class="form-group">
-    <%= form.label :brokerage %>
+    <label for="brokerage">Brokerage in Rupees</label>
     <%= form.text_field :brokerage, class: 'form-control' %>
 </div>
 

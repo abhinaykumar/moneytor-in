@@ -114,8 +114,8 @@ ActiveRecord::Schema.define(version: 2020_07_25_055335) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "portfolio_id"
-    t.bigint "listed_stocks_id"
-    t.index ["listed_stocks_id"], name: "index_stocks_on_listed_stocks_id"
+    t.bigint "listed_stock_id"
+    t.index ["listed_stock_id"], name: "index_stocks_on_listed_stock_id"
     t.index ["portfolio_id"], name: "index_stocks_on_portfolio_id"
   end
 
@@ -138,6 +138,6 @@ ActiveRecord::Schema.define(version: 2020_07_25_055335) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "portfolios", "users"
   add_foreign_key "services", "users"
-  add_foreign_key "stocks", "listed_stocks", column: "listed_stocks_id"
+  add_foreign_key "stocks", "listed_stocks"
   add_foreign_key "stocks", "portfolios"
 end

@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: asset_classes
+#
+#  id            :bigint           not null, primary key
+#  internal_name :string
+#  name          :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 # Class to  return All possible AssetClass such as Stock, Cash, Realt estate etc.
 class AssetClass < ApplicationRecord
   validates :name, presence: true

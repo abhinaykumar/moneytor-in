@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  root to: 'home#index'
+
   resources :stocks
   namespace :admin do
     resources :portfolios
@@ -23,9 +25,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :announcements, only: [:index]
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  root to: 'home#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  resources :listed_stocks, only: [:index]
   # APIs
 
   namespace :api do
