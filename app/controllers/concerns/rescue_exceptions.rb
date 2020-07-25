@@ -5,8 +5,11 @@ module RescueExceptions
     rescue_from Exception do |e|
       # Other exceptions than ApiErrors get converted to an internal server error
       error = Exceptions::InternalServerError.new e
-      Rails.logger.info e.message
-      Rails.logger.info e.backtrace.join($/)
+      if Rails.env.development?
+        Rails.logger.info e.message
+        Rails.logger.info e.backtrace.join($/)
+      end
+
       render json: error.to_json, status: error.status_code
     end
 

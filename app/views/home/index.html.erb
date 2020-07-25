@@ -35,7 +35,7 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <% @asset_classes.each do |asset| %>
                                 <% next if @asset[asset.internal_name.to_sym].blank? %>
-                                <%= render partial: "#{asset.internal_name}/details", locals: { asset: @asset[asset.internal_name.to_sym], asset_class: asset } %>
+                                <%= render partial: "#{asset.internal_name}/details", locals: { asset: @asset[asset.internal_name.to_sym], total: @asset[:total], asset_class: asset } %>
                                 <% end %>
                             </div>
                         </div>

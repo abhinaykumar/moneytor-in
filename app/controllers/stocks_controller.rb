@@ -25,7 +25,7 @@ class StocksController < ApplicationController
   # POST /stocks
   # POST /stocks.json
   def create
-    @stock = curren_user.stocks.build(stock_params)
+    @stock = current_user.portfolios.default.stocks.build(stock_params)
 
     respond_to do |format|
       if @stock.save

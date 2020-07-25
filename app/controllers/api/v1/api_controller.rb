@@ -7,7 +7,7 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def render_api_success(serializer, obj, _options = {})
-        render json: serializer.new(obj)
+        render json: serializer.new(obj).serialized_json
       end
 
       def render_api_error(messages, code)
