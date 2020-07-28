@@ -8,6 +8,7 @@
 @import "jumpstart/announcements";
 @import "home/index";
 @import "stocks/index";
+@import "mutual_funds/index";
 // Fixes bootstrap nav-brand container overlap
 @include media-breakpoint-down(xs) {
     .container {

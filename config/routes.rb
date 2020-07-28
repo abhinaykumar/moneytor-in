@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :mutual_funds
   root to: 'home#index'
 
   resources :stocks
