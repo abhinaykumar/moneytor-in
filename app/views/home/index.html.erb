@@ -4,8 +4,8 @@
             <div class="circle">
             </div>
             <div class="dropdown-content">
-                <a href="#">Mutual Funds</a>
-                <%= link_to "Stocks", new_stock_path %>
+                <%= link_to  "Mutual Fund", new_mutual_fund_path %>
+                <%= link_to "Stock", new_stock_path %>
                 <!-- <a href="#"></a> -->
             </div>
         </div>
@@ -17,14 +17,14 @@
                             <nav>
                                 <div class="nav nav-tabs nav-pills" id="nav-tab" role="tablist">
                                     <% @asset_classes.each do |asset| %>
-                                        <%= link_to asset.name, "#nav-#{asset.internal_name}", class: "nav-item nav-link active", id: "nav-#{asset.internal_name}-tab", date: { toggle: "tab" }, role: "tab", aria: { controls: "nav-home", selected: "true" } %>
+                                    <%= link_to asset.name, "#nav-#{asset.internal_name}", class: "nav-item nav-link active", id: "nav-#{asset.internal_name}-tab", date: { toggle: "tab" }, role: "tab", aria: { controls: "nav-home", selected: "true" } %>
                                     <% end %>
                                 </div>
                             </nav>
 
                             <div class="tab-content" id="nav-tabContent">
                                 <% @asset_classes.each do |asset| %>
-                                    <%= render partial: "#{asset.internal_name}/details", locals: { asset: @asset[asset.internal_name.to_sym], total: @asset[:total], asset_class: asset } %>
+                                <%= render partial: "#{asset.internal_name}/details", locals: { asset: @asset[asset.internal_name.to_sym], total: @asset[:total], asset_class: asset } %>
                                 <% end %>
                             </div>
                         </div>

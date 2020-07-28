@@ -20,7 +20,7 @@
 #
 #  fk_rails_...  (listed_stock_id => listed_stocks.id)
 #  fk_rails_...  (portfolio_id => portfolios.id)
-# rails g scaffold MutualFund invetment_type:string date_of_invetment:date units:float invetment_amount:float portfolio:references
+#
 class Stock < ApplicationRecord
   belongs_to :portfolio
   belongs_to :listed_stock

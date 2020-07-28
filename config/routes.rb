@@ -1,7 +1,6 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :mutual_funds
   root to: 'home#index'
 
   resources :stocks
@@ -22,11 +21,24 @@ Rails.application.routes.draw do
       mount Sidekiq::Web => '/sidekiq'
     end
 
-
   resources :notifications, only: [:index]
+
   resources :announcements, only: [:index]
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  resources :listed_stocks, only: [:index]
+
+  resources :listed_stocks, only: [:index] do
+    collection do
+      get :search
+    end
+  end
+
+  resources :mutual_funds do
+    collection do
+      get :search
+    end
+  end
+
   # APIs
 
   namespace :api do

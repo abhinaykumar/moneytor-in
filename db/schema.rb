@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_214019) do
+ActiveRecord::Schema.define(version: 2020_07_28_224208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,18 @@ ActiveRecord::Schema.define(version: 2020_07_28_214019) do
     t.integer "face_value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "mutual_funds", force: :cascade do |t|
+    t.string "name"
+    t.string "invetment_type"
+    t.date "date_of_invetment"
+    t.float "units"
+    t.float "invetment_amount"
+    t.bigint "portfolio_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["portfolio_id"], name: "index_mutual_funds_on_portfolio_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -135,6 +147,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_214019) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "mutual_funds", "portfolios"
   add_foreign_key "portfolios", "users"
   add_foreign_key "services", "users"
   add_foreign_key "stocks", "listed_stocks"
