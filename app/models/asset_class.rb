@@ -8,7 +8,6 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
-# Class to  return All possible AssetClass such as Stock, Cash, Realt estate etc.
 class AssetClass < ApplicationRecord
   validates :name, presence: true
   after_validation :set_internal_name

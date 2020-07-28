@@ -5,7 +5,6 @@
 #  id              :bigint           not null, primary key
 #  brokerage       :float
 #  investment_date :date
-#  name            :string
 #  price           :float
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

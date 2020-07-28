@@ -74,3 +74,5 @@ gem 'image_processing'
 
 gem 'jwt', '~> 2.2', '>= 2.2.1'
 gem 'fast_jsonapi', '~> 1.5'
+
+gem 'httparty'

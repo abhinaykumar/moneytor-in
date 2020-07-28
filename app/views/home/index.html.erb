@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row justify-content-start mb-3">
+    <div class="row mb-3">
         <div class="col-1 add-new">
             <div class="circle">
             </div>
@@ -9,11 +9,7 @@
                 <!-- <a href="#"></a> -->
             </div>
         </div>
-    </div>
-
-    <!-- Tabs -->
-    <div class="row justify-content-center mb-3">
-        <div class="col-8">
+        <div class="col-10">
             <section id="tabs" class="project-tab">
                 <div class="container">
                     <div class="row">
@@ -21,21 +17,14 @@
                             <nav>
                                 <div class="nav nav-tabs nav-pills" id="nav-tab" role="tablist">
                                     <% @asset_classes.each do |asset| %>
-                                    <% next if @asset[asset.internal_name.to_sym].blank? %>
-                                    <%= link_to asset.name, "#nav-#{asset.internal_name}", class: "nav-item nav-link active", id: "nav-#{asset.internal_name}-tab", date: { toggle: "tab" }, role: "tab", aria: { controls: "nav-home", selected: "true" } %>
-                                    <!--
-                                            <a class="nav-item nav-link active" id=<%= "nav-#{asset}-tab" %> data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Stocks</a>
-                                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Mutual Funds</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Crypto</a>
-                                            -->
+                                        <%= link_to asset.name, "#nav-#{asset.internal_name}", class: "nav-item nav-link active", id: "nav-#{asset.internal_name}-tab", date: { toggle: "tab" }, role: "tab", aria: { controls: "nav-home", selected: "true" } %>
                                     <% end %>
                                 </div>
                             </nav>
 
                             <div class="tab-content" id="nav-tabContent">
                                 <% @asset_classes.each do |asset| %>
-                                <% next if @asset[asset.internal_name.to_sym].blank? %>
-                                <%= render partial: "#{asset.internal_name}/details", locals: { asset: @asset[asset.internal_name.to_sym], total: @asset[:total], asset_class: asset } %>
+                                    <%= render partial: "#{asset.internal_name}/details", locals: { asset: @asset[asset.internal_name.to_sym], total: @asset[:total], asset_class: asset } %>
                                 <% end %>
                             </div>
                         </div>

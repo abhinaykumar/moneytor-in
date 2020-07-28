@@ -5,19 +5,18 @@
                 <th>Name</th>
                 <th>Date of Invetment</th>
                 <th>Buy Price</th>
-                <th>Current Market Price</th>
             </tr>
         </thead>
         <tbody>
             <% asset.each do |stock| %>
             <tr>
-                <td><%= stock.name %></td>
+                <td><%= stock.listed_stock.name %></td>
                 <td><%= stock.investment_date %></td>
                 <td><%= stock.price %></td>
             </tr>
             <% end %>
             <tr>
-                <td colspan="2">Total Investment:</td>
+                <td colspan="2"><b>Total Investment:</b></td>
                 <td><%= total %></td>
             </tr>
         </tbody>
