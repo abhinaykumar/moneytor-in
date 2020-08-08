@@ -2,15 +2,16 @@
 #
 # Table name: mutual_funds
 #
-#  id                :bigint           not null, primary key
-#  date_of_invetment :date
-#  invetment_amount  :float
-#  invetment_type    :string
-#  name              :string
-#  units             :float
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  portfolio_id      :bigint           not null
+#  id                 :bigint           not null, primary key
+#  current_nav        :float
+#  date_of_investment :date
+#  investment_amount  :float
+#  investment_type    :string
+#  name               :string
+#  units              :float
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  portfolio_id       :bigint           not null
 #
 # Indexes
 #
@@ -23,16 +24,16 @@
 
 one:
   name: MyString
-  invetment_type: MyString
-  date_of_invetment: 2020-07-29
+  investment_type: MyString
+  date_of_investment: 2020-07-29
   units: 1.5
-  invetment_amount: 1.5
+  investment_amount: 1.5
   portfolio: one
 
 two:
   name: MyString
-  invetment_type: MyString
-  date_of_invetment: 2020-07-29
+  investment_type: MyString
+  date_of_investment: 2020-07-29
   units: 1.5
-  invetment_amount: 1.5
+  investment_amount: 1.5
   portfolio: two

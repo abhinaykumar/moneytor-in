@@ -1,8 +1,8 @@
-import { Controller } from "stimulus"
+// import { Controller } from "stimulus"
 
-export default class extends Controller {
-    static targets = ["body"]
-    initialize() {
-        console.log(this.bodyTarget)
-    }
-}
+// export default class extends Controller {
+//     static targets = ["body"]
+//     initialize() {
+//         console.log(this.bodyTarget)
+//     }
+// }

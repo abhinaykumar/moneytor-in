@@ -1,0 +1,4 @@
+<% @mutual_funds.each do |mutual_fund| %>
+<% sanitized_name = mutual_fund['label'].gsub('Reg', '')&.strip %>
+<%= content_tag(:li, "#{sanitized_name} Fund", role: 'option', class: "list-group-item", "data-autocomplete-value": "#{sanitized_name} Fund" ) %>
+<% end %>

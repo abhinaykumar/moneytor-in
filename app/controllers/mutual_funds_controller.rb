@@ -24,11 +24,11 @@ class MutualFundsController < ApplicationController
   # POST /mutual_funds
   # POST /mutual_funds.json
   def create
-    @mutual_fund = MutualFund.new(mutual_fund_params)
+    @mutual_fund = current_user.portfolios.default.mutual_funds.build(mutual_fund_params)
 
     respond_to do |format|
       if @mutual_fund.save
-        format.html { redirect_to @mutual_fund, notice: 'Mutual fund was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Mutual fund was successfully created.' }
         format.json { render :show, status: :created, location: @mutual_fund }
       else
         format.html { render :new }
@@ -64,7 +64,9 @@ class MutualFundsController < ApplicationController
   def search
     # make an API call to valueresearch to get the list of mutual funds.
     # make sure to set the headers.
-    # ValueResearchServices::AutoCompleteFunds.call(params[:term])
+    @mutual_funds = ValueResearchServices::GetMutualFunds.call(params[:q])
+    # TODO: remove this when feature is done
+    expires_in 1.year, public: true
     render layout: false
   end
 
@@ -76,6 +78,6 @@ class MutualFundsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def mutual_fund_params
-      params.require(:mutual_fund).permit(:name, :invetment_type, :date_of_invetment, :units, :invetment_amount, :portfolio_id)
+      params.require(:mutual_fund).permit(:name, :investment_type, :date_of_investment, :units, :investment_amount, :current_nav)
     end
 end

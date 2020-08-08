@@ -2,13 +2,20 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    default_portfolio = current_user.portfolios.default
-    default_asset = 'stocks'
-    @asset = {}
-    @asset[default_asset.to_sym] = default_portfolio.stocks.includes(:listed_stock)
     # TODO: Portfolio should have a method 'sum_of_all_investments'
-    @asset.merge!(total: default_portfolio.stocks.sum_of_investment)
+    default_portfolio = current_user.portfolios.default
+    @total_investment_in_portfolio = 0
     @asset_classes = AssetClass.select(:name, :internal_name).order(:created_at)
+    @assets = {}
+    @asset_classes.each do |asset_class|
+      asset = asset_class.internal_name.classify.constantize.where(portfolio: default_portfolio)
+      next unless asset.exists?
+
+      @assets[asset_class.internal_name.to_sym] = { items: asset }
+      total_investment_in_asset = asset.sum_of_investment
+      @total_investment_in_portfolio += total_investment_in_asset
+      @assets[asset_class.internal_name.to_sym].merge!(total: total_investment_in_asset)
+    end
   end
 
   def terms

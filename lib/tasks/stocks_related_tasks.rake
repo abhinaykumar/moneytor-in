@@ -14,4 +14,16 @@ namespace :stocks do
       )
     end
   end
+
+  task update_current_market_price: :environment do
+    begin
+      ls = Stock.pluck(:listed_stock_id).uniq
+      ListedStock.where(id: ls).each do |s|
+        p = NseServices::GetQuote.call(s.symbol)
+        s.update! current_market_price: p
+      end
+    rescue StandardError => e
+      puts e
+    end
+  end
 end

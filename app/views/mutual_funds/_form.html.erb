@@ -1,59 +1,55 @@
-<%= form_with(model: mutual_fund, local: true) do |form| %>
-  <% if mutual_fund.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(mutual_fund.errors.count, "error") %> prohibited this mutual_fund from being saved:</h2>
+<%= form_with(model: mutual_fund) do |form| %>
+<% if mutual_fund.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(mutual_fund.errors.count, "error") %> prohibited this mutual_fund from being saved:</h2>
 
-      <ul>
-      <% mutual_fund.errors.full_messages.each do |message| %>
+    <ul>
+        <% mutual_fund.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <% end %>
+    </ul>
+</div>
+<% end %>
 
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control' %>
-  </div>
+<div class="form-group" data-controller="autocomplete" data-autocomplete-url="<%= search_mutual_funds_path %>">
+    <%= form.text_field :name, class: 'form-control', placeholder: "Search for name of the company/stock", data: { target: "autocomplete.input" } %>
+    <ul class="list-group" data-target="autocomplete.results">
+    </ul>
+</div>
 
-  <div class="form-group">
-    <%= form.label :invetment_type %>
-    <%= form.text_field :invetment_type, class: 'form-control' %>
-  </div>
+<div class="form-group">
+    <%= form.label :investment_type %>
+    <%= form.select :investment_type, ['Lumpsum', 'SIP'], { include_blank: '-- Select one --' }, required: true, class: 'form-control' %>
+</div>
 
-  <div class="form-group">
-    <%= form.label :date_of_invetment %>
-    <%= form.date_select :date_of_invetment, class: 'form-control' %>
-  </div>
+<div class="form-group">
+    <%= form.label :date_of_investment %>
+    <%= form.text_field :date_of_investment, class: 'form-control', data: { controller: "flatpickr", flatpickr_date_format: "Y-m-d", flatpickr_max_date: Time.zone.now } %>
+</div>
 
-  <div class="form-group">
-    <%= form.label :units %>
-    <%= form.text_field :units, class: 'form-control' %>
-  </div>
+<div class="form-group">
+    <%= form.label :current_nav %>
+    <%= form.text_field :current_nav, class: 'form-control' %>
+</div>
 
-  <div class="form-group">
-    <%= form.label :invetment_amount %>
-    <%= form.text_field :invetment_amount, class: 'form-control' %>
-  </div>
+<div class="form-group">
+    <%= form.label :investment_amount %>
+    <%= form.text_field :investment_amount, class: 'form-control' %>
+</div>
 
-  <div class="form-group">
-    <%= form.label :portfolio_id %>
-    <%= form.text_field :portfolio_id, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
+<div class="form-group">
     <% if mutual_fund.persisted? %>
-      <div class="float-right">
+    <div class="float-right">
         <%= link_to 'Destroy', mutual_fund, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-      </div>
+    </div>
     <% end %>
 
     <%= form.submit class: 'btn btn-primary' %>
 
     <% if mutual_fund.persisted? %>
-      <%= link_to "Cancel", mutual_fund, class: "btn btn-link" %>
+    <%= link_to "Cancel", mutual_fund, class: "btn btn-link" %>
     <% else %>
-      <%= link_to "Cancel", mutual_funds_path, class: "btn btn-link" %>
+    <%= link_to "Cancel", root_path, class: "btn btn-link" %>
     <% end %>
-  </div>
+</div>
 <% end %>

@@ -1,9 +1,18 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-sm-6">
+        <div class="col-sm-6 offset-sm-2">
             <h3>Add Mutual Fund</h1>
 
                 <%= render 'form', mutual_fund: @mutual_fund %>
+        </div>
+        <div class="col-sm-4">
+            <div id="search-fund-card" class="card text-white bg-dark invisible" style="width: 18rem;">
+                <div class="card-body" data-controller="mutual-fund">
+                    <h5 class="card-title" id="search-fund-name"></h5>
+                    <p class="card-text">Click below to find out the latest NAV for this fund</p>
+                    <a href="#" target="_blank" id="google-fund-nav" class="btn btn-primary">Google it</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

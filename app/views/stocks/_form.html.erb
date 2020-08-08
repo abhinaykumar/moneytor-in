@@ -12,7 +12,7 @@
 <% end %>
 
 <div class="form-group" data-controller="autocomplete" data-autocomplete-url="<%= search_listed_stocks_path %>">
-    <%= form.text_field :name, class: 'form-control', placeholder: "Search for name of the company/stock", data: { target: "autocomplete.input" } %>
+    <%= text_field(:name, '', class: 'form-control', placeholder: "Search for name of the company/stock", data: { target: "autocomplete.input" }) %>
     <%= form.hidden_field :listed_stock_id, data: { target: "autocomplete.hidden" } %>
     <ul class="list-group" data-target="autocomplete.results">
     </ul>

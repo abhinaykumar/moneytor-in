@@ -17,7 +17,7 @@ class MutualFundsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create mutual_fund" do
     assert_difference('MutualFund.count') do
-      post mutual_funds_url, params: { mutual_fund: { date_of_invetment: @mutual_fund.date_of_invetment, invetment_amount: @mutual_fund.invetment_amount, invetment_type: @mutual_fund.invetment_type, name: @mutual_fund.name, portfolio_id: @mutual_fund.portfolio_id, units: @mutual_fund.units } }
+      post mutual_funds_url, params: { mutual_fund: { date_of_investment: @mutual_fund.date_of_investment, investment_amount: @mutual_fund.investment_amount, investment_type: @mutual_fund.investment_type, name: @mutual_fund.name, portfolio_id: @mutual_fund.portfolio_id, units: @mutual_fund.units } }
     end
 
     assert_redirected_to mutual_fund_url(MutualFund.last)
@@ -34,7 +34,7 @@ class MutualFundsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update mutual_fund" do
-    patch mutual_fund_url(@mutual_fund), params: { mutual_fund: { date_of_invetment: @mutual_fund.date_of_invetment, invetment_amount: @mutual_fund.invetment_amount, invetment_type: @mutual_fund.invetment_type, name: @mutual_fund.name, portfolio_id: @mutual_fund.portfolio_id, units: @mutual_fund.units } }
+    patch mutual_fund_url(@mutual_fund), params: { mutual_fund: { date_of_investment: @mutual_fund.date_of_investment, investment_amount: @mutual_fund.investment_amount, investment_type: @mutual_fund.investment_type, name: @mutual_fund.name, portfolio_id: @mutual_fund.portfolio_id, units: @mutual_fund.units } }
     assert_redirected_to mutual_fund_url(@mutual_fund)
   end
 

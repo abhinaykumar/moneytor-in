@@ -25,6 +25,8 @@ class Stock < ApplicationRecord
   belongs_to :portfolio
   belongs_to :listed_stock
 
+  default_scope { includes(:listed_stock) }
+
   def self.sum_of_investment
     sum(:price)
   end

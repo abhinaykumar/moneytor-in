@@ -20,6 +20,7 @@ class Portfolio < ApplicationRecord
   belongs_to :user
 
   has_many :stocks
+  has_many :mutual_funds
 
   scope :default, -> { find_by(name: 'default') }
 end
