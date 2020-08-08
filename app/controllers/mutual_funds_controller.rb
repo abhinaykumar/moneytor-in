@@ -78,6 +78,6 @@ class MutualFundsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def mutual_fund_params
-      params.require(:mutual_fund).permit(:name, :investment_type, :date_of_investment, :units, :investment_amount, :current_nav)
+      params.require(:mutual_fund).permit(:name, :investment_type, :date_of_investment, :units, :investment_amount, :nav)
     end
 end

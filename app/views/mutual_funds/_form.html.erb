@@ -12,7 +12,7 @@
 <% end %>
 
 <div class="form-group" data-controller="autocomplete" data-autocomplete-url="<%= search_mutual_funds_path %>">
-    <%= form.text_field :name, class: 'form-control', placeholder: "Search for name of the company/stock", data: { target: "autocomplete.input" } %>
+    <%= form.text_field :name, class: 'form-control', placeholder: "Search for name of the fund", data: { target: "autocomplete.input" } %>
     <ul class="list-group" data-target="autocomplete.results">
     </ul>
 </div>
@@ -28,11 +28,6 @@
 </div>
 
 <div class="form-group">
-    <%= form.label :current_nav %>
-    <%= form.text_field :current_nav, class: 'form-control' %>
-</div>
-
-<div class="form-group">
     <%= form.label :investment_amount %>
     <%= form.text_field :investment_amount, class: 'form-control' %>
 </div>
@@ -44,7 +39,7 @@
     </div>
     <% end %>
 
-    <%= form.submit class: 'btn btn-primary' %>
+    <%= form.submit "Add Fund", class: 'btn btn-primary' %>
 
     <% if mutual_fund.persisted? %>
     <%= link_to "Cancel", mutual_fund, class: "btn btn-link" %>

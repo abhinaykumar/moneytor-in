@@ -3,11 +3,11 @@
 # Table name: mutual_funds
 #
 #  id                 :bigint           not null, primary key
-#  current_nav        :float
 #  date_of_investment :date
 #  investment_amount  :float
 #  investment_type    :string
 #  name               :string
+#  nav                :float
 #  units              :float
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -24,15 +24,8 @@
 class MutualFund < ApplicationRecord
   belongs_to :portfolio
 
-  before_save :calculate_units
-
   def self.sum_of_investment
     sum(:investment_amount)
   end
 
-  private
-
-  def calculate_units
-    self.units = investment_amount / current_nav
-  end
 end
