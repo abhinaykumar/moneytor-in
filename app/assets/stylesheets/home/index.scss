@@ -46,20 +46,20 @@
     background-color: #ddd;
 }
 
-// .add-new:hover .dropdown-content {
-//     display: block;
-// }
-// .add-new:hover .circle {
-//     background-color: #3e8e41;
-// }
-// .add-new {
-//     padding: 0px 0px !important;
-// }
+.add-new:hover .dropdown-content {
+    display: block;
+}
+
+.add-new:hover .circle {
+    background-color: #3e8e41;
+}
+
 .add-new {
-    margin-top: 20px;
+    padding: 0px 0px !important;
 }
 
 .flex-parent {
+    margin-top: 20px;
     display: flex;
 }
 
