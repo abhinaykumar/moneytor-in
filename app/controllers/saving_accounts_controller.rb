@@ -1,16 +1,5 @@
 class SavingAccountsController < ApplicationController
-  before_action :set_saving_account, only: [:show, :edit, :update, :destroy]
-
-  # GET /saving_accounts
-  # GET /saving_accounts.json
-  def index
-    @saving_accounts = SavingAccount.all
-  end
-
-  # GET /saving_accounts/1
-  # GET /saving_accounts/1.json
-  def show
-  end
+  before_action :set_saving_account, only: [:edit, :update, :destroy]
 
   # GET /saving_accounts/new
   def new

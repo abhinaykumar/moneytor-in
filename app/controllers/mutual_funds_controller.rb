@@ -1,16 +1,5 @@
 class MutualFundsController < ApplicationController
-  before_action :set_mutual_fund, only: [:show, :edit, :update, :destroy]
-
-  # GET /mutual_funds
-  # GET /mutual_funds.json
-  def index
-    @mutual_funds = MutualFund.all
-  end
-
-  # GET /mutual_funds/1
-  # GET /mutual_funds/1.json
-  def show
-  end
+  before_action :set_mutual_fund, only: [:edit, :update, :destroy]
 
   # GET /mutual_funds/new
   def new

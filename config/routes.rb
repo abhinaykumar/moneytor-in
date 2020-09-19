@@ -3,9 +3,9 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :mutual_funds
-  resources :stocks
-  resources :saving_accounts
+  resources :mutual_funds, except: %i[show index]
+  resources :stocks, except: %i[show index]
+  resources :saving_accounts, except: %i[show index]
 
   resources :listed_stocks, only: [] do
     collection do
