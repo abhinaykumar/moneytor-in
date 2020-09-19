@@ -13,7 +13,7 @@ class StockDashboard < Administrate::BaseDashboard
     name: Field::String,
     investment_date: Field::Date,
     brokerage: Field::Number.with_options(decimals: 2),
-    price: Field::Number.with_options(decimals: 2),
+    at_price: Field::Number.with_options(decimals: 2),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     portfolios_id: Field::Number,

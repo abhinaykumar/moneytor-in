@@ -24,7 +24,9 @@ class MutualFundsController < ApplicationController
   # POST /mutual_funds
   # POST /mutual_funds.json
   def create
+    listed_mutual_fund = ListedMutualFund.create_by(mutual_fund_params)
     @mutual_fund = current_user.portfolios.default.mutual_funds.build(mutual_fund_params)
+    @mutual_fund.listed_mutual_fund = listed_mutual_fund
 
     respond_to do |format|
       if @mutual_fund.save
@@ -71,13 +73,14 @@ class MutualFundsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_mutual_fund
-      @mutual_fund = MutualFund.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def mutual_fund_params
-      params.require(:mutual_fund).permit(:name, :investment_type, :date_of_investment, :units, :investment_amount, :nav)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_mutual_fund
+    @mutual_fund = MutualFund.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def mutual_fund_params
+    params.require(:mutual_fund).permit(:name, :date_of_investment, :units, :investment_amount, :at_nav)
+  end
 end

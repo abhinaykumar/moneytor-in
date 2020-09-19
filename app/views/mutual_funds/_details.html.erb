@@ -4,7 +4,8 @@
             <tr>
                 <th>Name</th>
                 <th>Date of Investment</th>
-                <th>Investment Type</th>
+                <th>At Nav</th>
+                <th>No. of Units</th>
                 <th>Investment Amount</th>
             </tr>
         </thead>
@@ -13,13 +14,14 @@
             <tr>
                 <td><%= mutual_fund.name %></td>
                 <td><%= mutual_fund.date_of_investment %></td>
-                <td><%= mutual_fund.investment_type %></td>
+                <td><%= mutual_fund.at_nav %></td>
+                <td><%= mutual_fund.units&.round(2) %></td>
                 <td><%= mutual_fund.investment_amount&.round(2) %></td>
             </tr>
             <% end %>
             <tr>
-                <td colspan="3"><b>Total Investment:</b></td>
-                <td><%= total %></td>
+                <td colspan="4"><b>Total Investment:</b></td>
+                <td><%= total&.round(2) %></td>
             </tr>
         </tbody>
     </table>

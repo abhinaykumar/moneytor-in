@@ -2,14 +2,15 @@
 #
 # Table name: stocks
 #
-#  id              :bigint           not null, primary key
-#  brokerage       :float
-#  investment_date :date
-#  price           :float
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  listed_stock_id :bigint
-#  portfolio_id    :bigint
+#  id                :bigint           not null, primary key
+#  at_price          :float
+#  investment_amount :float
+#  investment_date   :date
+#  quantity          :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  listed_stock_id   :bigint
+#  portfolio_id      :bigint
 #
 # Indexes
 #
@@ -27,7 +28,18 @@ class Stock < ApplicationRecord
 
   default_scope { includes(:listed_stock) }
 
+  validates :at_price, presence: true
+  validates :quantity, presence: true
+
+  after_validation :calculate_investment_amount
+
   def self.sum_of_investment
-    sum(:price)
+    sum(:investment_amount)
+  end
+
+  private
+
+  def calculate_investment_amount
+    self.investment_amount = quantity * at_price
   end
 end

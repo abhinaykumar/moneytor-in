@@ -24,14 +24,16 @@
 
                         <div class="tab-content" id="nav-tabContent">
                             <% @asset_classes.each_with_index do |asset_class, i| %>
-                                <% active, _, show = set_table_properties(i) %>
-                                <% if @assets[asset_class.internal_name.to_sym].present? %>
-                                    <%= render partial: "#{asset_class.internal_name}/details", locals: { asset: @assets[asset_class.internal_name.to_sym], total: @assets[asset_class.internal_name.to_sym][:total], asset_class: asset_class, active: active, show: show } %>
-                                <% else %>
-                                    <div class="tab-pane fade <%= show %> <%= active %>" id=<%= "nav-#{asset_class.internal_name}" %> role="tabpanel" aria-labelledby=<%= "nav-#{asset_class.internal_name}-tab" %>>
-                                        <h3>No Record Found</h3>
-                                    </div>
-                                <% end %>
+                            <% active, _, show = set_table_properties(i) %>
+                            <% if @assets[asset_class.internal_name.to_sym].present? %>
+                            <%= render partial: "#{asset_class.internal_name}/details", locals: { asset: @assets[asset_class.internal_name.to_sym], total: @assets[asset_class.internal_name.to_sym][:total], asset_class: asset_class, active: active, show: show } %>
+                            <% else %>
+                            <div class="tab-pane fade <%= show %> <%= active %>" id=<%= "nav-#{asset_class.internal_name}" %> role="tabpanel" aria-labelledby=<%= "nav-#{asset_class.internal_name}-tab" %>>
+                                <div class="add-new">
+                                    <%= link_to  "Add #{asset_class.name}", public_send("new_#{asset_class.name.classify.downcase.gsub(' ', '_')}_path") %>
+                                </div>
+                            </div>
+                            <% end %>
                             <% end %>
                         </div>
                     </div>

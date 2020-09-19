@@ -16,7 +16,6 @@ class MutualFundsTest < ApplicationSystemTestCase
 
     fill_in "Date of investment", with: @mutual_fund.date_of_investment
     fill_in "investment amount", with: @mutual_fund.investment_amount
-    fill_in "investment type", with: @mutual_fund.investment_type
     fill_in "Name", with: @mutual_fund.name
     fill_in "Portfolio", with: @mutual_fund.portfolio_id
     fill_in "Units", with: @mutual_fund.units

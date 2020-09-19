@@ -20,18 +20,26 @@
 
 <div class="form-group">
     <%= form.label :investment_date %>
-    <%= form.text_field :investment_date, class: 'form-control', data: { controller: "flatpickr", flatpickr_date_format: "Y-m-d", flatpickr_max_date: Time.zone.now } %>
+    <%= form.text_field :investment_date, 
+        class: 'form-control', 
+        data: { 
+            controller: "flatpickr", 
+            flatpickr_date_format: "D, F j Y at h:i K", 
+            flatpickr_max_date: Time.zone.now 
+        } 
+    %>
 </div>
 
 <div class="form-group">
-    <label for="brokerage">Brokerage in Rupees</label>
-    <%= form.text_field :brokerage, class: 'form-control' %>
+    <%= form.label :at_price %>
+    <%= form.text_field :at_price, class: 'form-control' %>
 </div>
 
 <div class="form-group">
-    <%= form.label :price %>
-    <%= form.text_field :price, class: 'form-control' %>
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity, class: 'form-control' %>
 </div>
+
 
 <div class="form-group">
     <% if stock.persisted? %>

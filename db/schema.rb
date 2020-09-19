@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_125243) do
+ActiveRecord::Schema.define(version: 2020_09_08_093713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(version: 2020_08_08_125243) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "listed_mutual_funds", force: :cascade do |t|
+    t.string "name"
+    t.float "nav"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "listed_stocks", force: :cascade do |t|
     t.string "symbol"
     t.string "name"
@@ -75,7 +82,6 @@ ActiveRecord::Schema.define(version: 2020_08_08_125243) do
   end
 
   create_table "mutual_funds", force: :cascade do |t|
-    t.string "investment_type"
     t.date "date_of_investment"
     t.float "units"
     t.float "investment_amount"
@@ -83,7 +89,9 @@ ActiveRecord::Schema.define(version: 2020_08_08_125243) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.float "nav"
+    t.bigint "listed_mutual_fund_id", null: false
+    t.float "at_nav"
+    t.index ["listed_mutual_fund_id"], name: "index_mutual_funds_on_listed_mutual_fund_id"
     t.index ["portfolio_id"], name: "index_mutual_funds_on_portfolio_id"
   end
 
@@ -122,12 +130,13 @@ ActiveRecord::Schema.define(version: 2020_08_08_125243) do
 
   create_table "stocks", force: :cascade do |t|
     t.date "investment_date"
-    t.float "brokerage"
-    t.float "price"
+    t.float "at_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "portfolio_id"
     t.bigint "listed_stock_id"
+    t.integer "quantity"
+    t.float "investment_amount"
     t.index ["listed_stock_id"], name: "index_stocks_on_listed_stock_id"
     t.index ["portfolio_id"], name: "index_stocks_on_portfolio_id"
   end
@@ -149,6 +158,7 @@ ActiveRecord::Schema.define(version: 2020_08_08_125243) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "mutual_funds", "listed_mutual_funds"
   add_foreign_key "mutual_funds", "portfolios"
   add_foreign_key "portfolios", "users"
   add_foreign_key "services", "users"

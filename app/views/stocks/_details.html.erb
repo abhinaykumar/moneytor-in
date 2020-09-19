@@ -6,6 +6,8 @@
                 <th>Date of Investment</th>
                 <th>Current Market Price</th>
                 <th>Buy Price</th>
+                <th>Qty.</th>
+                <th>Investment Amount</th>
             </tr>
         </thead>
         <tbody>
@@ -14,12 +16,14 @@
                 <td><%= stock.listed_stock.name %></td>
                 <td><%= stock.investment_date %></td>
                 <td><%= stock.listed_stock.current_market_price&.round(2) %></td>
-                <td><%= stock.price&.round(2) %></td>
+                <td><%= stock.at_price&.round(2) %></td>
+                <td><%= stock.quantity %></td>
+                <td><%= stock.investment_amount&.round(2) %></td>
             </tr>
             <% end %>
             <tr>
-                <td colspan="3"><b>Total Investment:</b></td>
-                <td><%= total %></td>
+                <td colspan="5"><b>Total Investment:</b></td>
+                <td><%= total&.round(2) %></td>
             </tr>
         </tbody>
     </table>

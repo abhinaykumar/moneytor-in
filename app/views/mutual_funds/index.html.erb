@@ -35,9 +35,6 @@
         <%= content_tag :tr, id: dom_id(mutual_fund), class: dom_class(mutual_fund) do %>
           
             <td><%= link_to mutual_fund.name, mutual_fund %></td>
-          
-
-                      <td><%= mutual_fund.investment_type %></td>
                       <td><%= mutual_fund.date_of_investment %></td>
                       <td><%= mutual_fund.units %></td>
                       <td><%= mutual_fund.investment_amount %></td>
