@@ -3,8 +3,9 @@ class ListedMutualFundsController < ApplicationController
     # make an API call to valueresearch to get the list of mutual funds.
     # make sure to set the headers.
     @mutual_funds = ValueResearchServices::GetMutualFunds.call(params[:q])
-    # TODO: remove this when feature is done
-    expires_in 1.year, public: true
+
+    expires_in 1.day, public: true if Rails.env.development?
+
     render layout: false
   end
 end
