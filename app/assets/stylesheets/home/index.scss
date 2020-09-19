@@ -46,14 +46,23 @@
     background-color: #ddd;
 }
 
-.add-new:hover .dropdown-content {
-    display: block;
-}
-
-.add-new:hover .circle {
-    background-color: #3e8e41;
-}
-
+// .add-new:hover .dropdown-content {
+//     display: block;
+// }
+// .add-new:hover .circle {
+//     background-color: #3e8e41;
+// }
+// .add-new {
+//     padding: 0px 0px !important;
+// }
 .add-new {
-    padding: 0px 0px !important;
+    margin-top: 20px;
+}
+
+.flex-parent {
+    display: flex;
+}
+
+.jc-center {
+    justify-content: center;
 }
