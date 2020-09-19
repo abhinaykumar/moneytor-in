@@ -11,7 +11,7 @@
 </div>
 <% end %>
 
-<div class="form-group" data-controller="autocomplete" data-autocomplete-url="<%= search_mutual_funds_path %>">
+<div class="form-group" data-controller="autocomplete" data-autocomplete-url="<%= search_listed_mutual_funds_path %>">
     <%= form.text_field :name, class: 'form-control', placeholder: "Search for name of the fund", data: { target: "autocomplete.input" } %>
     <ul class="list-group" data-target="autocomplete.results">
     </ul>

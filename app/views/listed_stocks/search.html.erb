@@ -1,3 +1,3 @@
-<% @listed_stocks.each do |listed_stocks| %>
-    <%= content_tag(:li, listed_stocks.name, role: 'option', class: "list-group-item", "data-autocomplete-value": listed_stocks.id ) %>
+<% @listed_stocks.each do |listed_stock| %>
+    <%= content_tag(:li, listed_stock.name, role: 'option', class: "list-group-item", "data-autocomplete-value": listed_stock.id ) %>
 <% end %>

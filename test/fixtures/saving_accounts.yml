@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: saving_accounts
+#
+#  id               :bigint           not null, primary key
+#  amount_saved     :float
+#  branch_name      :string
+#  rate_of_interest :float            default(0.0)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  listed_bank_id   :bigint           not null
+#  portfolio_id     :bigint           not null
+#
+# Indexes
+#
+#  index_saving_accounts_on_listed_bank_id  (listed_bank_id)
+#  index_saving_accounts_on_portfolio_id    (portfolio_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (listed_bank_id => listed_banks.id)
+#  fk_rails_...  (portfolio_id => portfolios.id)
+#
+
+one:
+  amount_saved: 1.5
+  rate_of_interest: 1.5
+  branch_name: one
+  listed_bank: one
+
+two:
+  amount_saved: 1.5
+  rate_of_interest: 1.5
+  branch_name: two
+  listed_bank: two

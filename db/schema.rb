@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_093713) do
+ActiveRecord::Schema.define(version: 2020_09_19_065424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 2020_09_08_093713) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "listed_banks", force: :cascade do |t|
+    t.string "name"
+    t.string "symbol"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "listed_mutual_funds", force: :cascade do |t|
@@ -114,6 +121,18 @@ ActiveRecord::Schema.define(version: 2020_09_08_093713) do
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
+  create_table "saving_accounts", force: :cascade do |t|
+    t.float "amount_saved"
+    t.float "rate_of_interest", default: 0.0
+    t.bigint "listed_bank_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "portfolio_id", null: false
+    t.string "branch_name"
+    t.index ["listed_bank_id"], name: "index_saving_accounts_on_listed_bank_id"
+    t.index ["portfolio_id"], name: "index_saving_accounts_on_portfolio_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "provider"
@@ -161,6 +180,8 @@ ActiveRecord::Schema.define(version: 2020_09_08_093713) do
   add_foreign_key "mutual_funds", "listed_mutual_funds"
   add_foreign_key "mutual_funds", "portfolios"
   add_foreign_key "portfolios", "users"
+  add_foreign_key "saving_accounts", "listed_banks"
+  add_foreign_key "saving_accounts", "portfolios"
   add_foreign_key "services", "users"
   add_foreign_key "stocks", "listed_stocks"
   add_foreign_key "stocks", "portfolios"

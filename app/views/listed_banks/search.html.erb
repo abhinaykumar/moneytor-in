@@ -1,0 +1,3 @@
+<% @listed_banks.each do |listed_bank| %>
+    <%= content_tag(:li, listed_bank.name, role: 'option', class: "list-group-item", "data-autocomplete-value": listed_bank.id ) %>
+<% end %>

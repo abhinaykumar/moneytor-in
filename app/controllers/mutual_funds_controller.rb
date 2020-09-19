@@ -63,15 +63,6 @@ class MutualFundsController < ApplicationController
     end
   end
 
-  def search
-    # make an API call to valueresearch to get the list of mutual funds.
-    # make sure to set the headers.
-    @mutual_funds = ValueResearchServices::GetMutualFunds.call(params[:q])
-    # TODO: remove this when feature is done
-    expires_in 1.year, public: true
-    render layout: false
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

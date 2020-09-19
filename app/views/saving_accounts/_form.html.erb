@@ -1,0 +1,51 @@
+<%= form_with(model: saving_account, local: true) do |form| %>
+<% if saving_account.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(saving_account.errors.count, "error") %> prohibited this saving_account from being saved:</h2>
+
+    <ul>
+        <% saving_account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="form-group" data-controller="autocomplete" data-autocomplete-url="<%= search_listed_banks_path %>">
+    <%= text_field(:name, '', class: 'form-control', placeholder: "Search for name of the company/stock", data: { target: "autocomplete.input" }) %>
+    <%= form.hidden_field :listed_bank_id, data: { target: "autocomplete.hidden" } %>
+    <ul class="list-group" data-target="autocomplete.results">
+    </ul>
+</div>
+
+<div class="form-group">
+    <%= form.label :branch_name %>
+    <%= form.text_field :branch_name, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+    <%= form.label :amount_saved %>
+    <%= form.text_field :amount_saved, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+    <%= form.label :rate_of_interest %>
+    <%= form.text_field :rate_of_interest, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+    <% if saving_account.persisted? %>
+    <div class="float-right">
+        <%= link_to 'Destroy', saving_account, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+    </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if saving_account.persisted? %>
+    <%= link_to "Cancel", saving_account, class: "btn btn-link" %>
+    <% else %>
+    <%= link_to "Cancel", saving_accounts_path, class: "btn btn-link" %>
+    <% end %>
+</div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="page-header">
+  <%= link_to saving_accounts_path, class: 'btn btn-default' do %>
+    All Saving_accounts
+  <% end %>
+  <%= link_to edit_saving_account_path(@saving_account), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show saving_account</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Amount saved:</dt>
+  <dd><%= @saving_account.amount_saved %></dd>
+
+  <dt>Rate of interest:</dt>
+  <dd><%= @saving_account.rate_of_interest %></dd>
+
+  <dt>Listed bank:</dt>
+  <dd><%= @saving_account.listed_bank %></dd>
+
+</dl>
