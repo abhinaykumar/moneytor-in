@@ -8,6 +8,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_listed_mutual_funds_on_name  (name)
+#
 class ListedMutualFund < ApplicationRecord
   has_many :mutual_funds
 
