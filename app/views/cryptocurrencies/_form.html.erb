@@ -1,0 +1,59 @@
+<%= form_with(model: cryptocurrency) do |form| %>
+<% if cryptocurrency.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(cryptocurrency.errors.count, "error") %> prohibited this cryptocurrency from being saved:</h2>
+
+    <ul>
+        <% cryptocurrency.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="form-group" data-controller="autocomplete" data-autocomplete-url="<%= search_listed_cryptocurrencies_path %>">
+    <%= text_field(:name, '', class: 'form-control', placeholder: "Search for name of the cryptocurrency", data: { target: "autocomplete.input" }) %>
+    <%= form.hidden_field :listed_cryptocurrency_id, data: { target: "autocomplete.hidden" } %>
+    <ul class="list-group" data-target="autocomplete.results">
+    </ul>
+</div>
+
+<div class="form-group">
+    <%= form.label :investment_date %>
+    <%= form.text_field :investment_date, 
+        class: 'form-control', 
+        data: { 
+            controller: "flatpickr", 
+            flatpickr_date_format: "D, F j Y at h:i K", 
+            flatpickr_max_date: Time.zone.now 
+        } 
+    %>
+</div>
+
+<div class="form-group">
+    <%= form.label :at_price %>
+    <%= form.text_field :at_price, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity, class: 'form-control' %>
+</div>
+
+
+<div class="form-group">
+    <% if cryptocurrency.persisted? %>
+    <div class="float-right">
+        <%= link_to 'Destroy', cryptocurrency, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+    </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if cryptocurrency.persisted? %>
+    <%= link_to "Cancel", cryptocurrency, class: "btn btn-link" %>
+    <% else %>
+    <%= link_to "Cancel", cryptocurrencies_path, class: "btn btn-link" %>
+    <% end %>
+</div>
+<% end %>

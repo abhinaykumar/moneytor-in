@@ -4,7 +4,7 @@ class ListedMutualFundsController < ApplicationController
     # make sure to set the headers.
     @mutual_funds = ValueResearchServices::GetMutualFunds.call(params[:q])
 
-    expires_in 1.day, public: true if Rails.env.development?
+    expires_in 1.year, public: true if Rails.env.development?
 
     render layout: false
   end

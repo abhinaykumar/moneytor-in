@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_035515) do
+ActiveRecord::Schema.define(version: 2020_10_10_142424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,19 @@ ActiveRecord::Schema.define(version: 2020_10_02_035515) do
     t.index ["user_id"], name: "index_auth_tokens_on_user_id"
   end
 
+  create_table "cryptocurrencies", force: :cascade do |t|
+    t.float "at_price"
+    t.float "investment_amount"
+    t.date "investment_date"
+    t.float "quantity"
+    t.bigint "listed_cryptocurrency_id", null: false
+    t.bigint "portfolio_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["listed_cryptocurrency_id"], name: "index_cryptocurrencies_on_listed_cryptocurrency_id"
+    t.index ["portfolio_id"], name: "index_cryptocurrencies_on_portfolio_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -82,6 +95,15 @@ ActiveRecord::Schema.define(version: 2020_10_02_035515) do
     t.string "sector"
     t.string "website"
     t.index ["name"], name: "index_listed_banks_on_name"
+  end
+
+  create_table "listed_cryptocurrencies", force: :cascade do |t|
+    t.string "name"
+    t.string "symbol"
+    t.float "current_market_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_listed_cryptocurrencies_on_name"
   end
 
   create_table "listed_mutual_funds", force: :cascade do |t|
@@ -194,6 +216,8 @@ ActiveRecord::Schema.define(version: 2020_10_02_035515) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "auth_tokens", "users"
+  add_foreign_key "cryptocurrencies", "listed_cryptocurrencies"
+  add_foreign_key "cryptocurrencies", "portfolios"
   add_foreign_key "mutual_funds", "listed_mutual_funds"
   add_foreign_key "mutual_funds", "portfolios"
   add_foreign_key "portfolios", "users"

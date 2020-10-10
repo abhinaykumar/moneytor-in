@@ -1,0 +1,3 @@
+<% @listed_cryptocurrencies.each do |listed_cryptocurrency| %>
+<%= content_tag(:li, listed_cryptocurrency.name, role: 'option', class: "list-group-item", "data-autocomplete-value": listed_cryptocurrency.id ) %>
+<% end %>

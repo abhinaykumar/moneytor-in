@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :mutual_funds, except: %i[show index]
   resources :stocks, except: %i[show index]
   resources :saving_accounts, except: %i[show index]
+  resources :cryptocurrencies, except: %i[show index]
 
   resources :listed_stocks, only: [] do
     collection do
@@ -25,7 +26,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :listed_cryptocurrencies, only: [] do
+    collection do
+      get :search
+    end
+  end
+
   namespace :admin do
+
+    resources :listed_cryptocurrencies
+
+    resources :cryptocurrencies
 
     resources :listed_banks
 
