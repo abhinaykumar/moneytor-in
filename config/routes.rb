@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     root to: 'users#index'
   end
 
-  get '/privacy', to: 'home#privacy'  
+  get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
 
   authenticate :user, lambda { |u| u.admin? } do
@@ -63,6 +63,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :sessions, only: [:create]
+      resources :stocks, onyl: [:index]
     end
   end
 end

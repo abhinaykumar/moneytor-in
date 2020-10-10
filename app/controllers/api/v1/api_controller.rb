@@ -3,11 +3,13 @@ module Api
     class ApiController < ActionController::Base
       include RescueExceptions
 
-      before_action :authenticate_token
+      attr_reader :current_user
+
+      before_action :set_current_user
       skip_before_action :verify_authenticity_token
 
       def render_api_success(serializer, obj, _options = {})
-        render json: serializer.new(obj).serialized_json
+        render json: serializer.new(obj)
       end
 
       def render_api_error(messages, code)
@@ -15,18 +17,17 @@ module Api
         render json: data, status: code
       end
 
-      private
+      protected
 
-      def authenticate_token
-        # begin
-        #   decoded_token = JWT.decode token
-        # rescue JWT::ExpiredSignature
-        #   # Handle expired token, e.g. logout user or deny access
-        # end
-      end
+      def set_current_user
+        return if request.headers['Authorization'].blank?
 
-      def current_user
-        @current_user
+        bearer_token = request.headers['Authorization'].split(' ').last
+
+        context = AuthenticateUser.call(bearer_token: bearer_token)
+        raise Exceptions::Unauthorized, context.error if context.failure?
+
+        @current_user = context.user
       end
     end
   end

@@ -1,7 +1,7 @@
 module Api
   module V1
     class SessionsController < ApiController
-      skip_before_action :authenticate_token, only: [:create]
+      skip_before_action :set_current_user, only: [:create]
 
       def create
         user = User.find_by(email: params[:email])
