@@ -43,7 +43,7 @@
     <%= form.submit class: 'btn btn-primary' %>
 
     <% if saving_account.persisted? %>
-    <%= link_to "Cancel", saving_account, class: "btn btn-link" %>
+    <%= link_to "Cancel", root_path, class: "btn btn-link" %>
     <% else %>
     <%= link_to "Cancel", root_path, class: "btn btn-link" %>
     <% end %>

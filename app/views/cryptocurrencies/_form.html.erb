@@ -51,9 +51,9 @@
     <%= form.submit class: 'btn btn-primary' %>
 
     <% if cryptocurrency.persisted? %>
-    <%= link_to "Cancel", cryptocurrency, class: "btn btn-link" %>
+    <%= link_to "Cancel", root_path, class: "btn btn-link" %>
     <% else %>
-    <%= link_to "Cancel", cryptocurrencies_path, class: "btn btn-link" %>
+    <%= link_to "Cancel", root_path, class: "btn btn-link" %>
     <% end %>
 </div>
 <% end %>

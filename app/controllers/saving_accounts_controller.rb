@@ -31,7 +31,7 @@ class SavingAccountsController < ApplicationController
   def update
     respond_to do |format|
       if @saving_account.update(saving_account_params)
-        format.html { redirect_to @saving_account, notice: 'Saving account was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Saving account was successfully updated.' }
         format.json { render :show, status: :ok, location: @saving_account }
       else
         format.html { render :edit }
@@ -45,7 +45,7 @@ class SavingAccountsController < ApplicationController
   def destroy
     @saving_account.destroy
     respond_to do |format|
-      format.html { redirect_to saving_accounts_url, notice: 'Saving account was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Saving account was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -32,7 +32,7 @@ class StocksController < ApplicationController
   def update
     respond_to do |format|
       if @stock.update(stock_params)
-        format.html { redirect_to @stock, notice: 'Stock was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Stock was successfully updated.' }
         format.json { render :show, status: :ok, location: @stock }
       else
         format.html { render :edit }
@@ -46,7 +46,7 @@ class StocksController < ApplicationController
   def destroy
     @stock.destroy
     respond_to do |format|
-      format.html { redirect_to stocks_url, notice: 'Stock was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Stock was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

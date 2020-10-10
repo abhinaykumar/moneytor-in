@@ -33,7 +33,7 @@ class MutualFundsController < ApplicationController
   def update
     respond_to do |format|
       if @mutual_fund.update(mutual_fund_params)
-        format.html { redirect_to @mutual_fund, notice: 'Mutual fund was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Mutual fund was successfully updated.' }
         format.json { render :show, status: :ok, location: @mutual_fund }
       else
         format.html { render :edit }
@@ -47,7 +47,7 @@ class MutualFundsController < ApplicationController
   def destroy
     @mutual_fund.destroy
     respond_to do |format|
-      format.html { redirect_to mutual_funds_url, notice: 'Mutual fund was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Mutual fund was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

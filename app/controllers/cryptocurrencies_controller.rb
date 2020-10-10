@@ -31,7 +31,7 @@ class CryptocurrenciesController < ApplicationController
   def update
     respond_to do |format|
       if @cryptocurrency.update(cryptocurrency_params)
-        format.html { redirect_to @cryptocurrency, notice: 'Cryptocurrency was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Cryptocurrency was successfully updated.' }
         format.json { render :show, status: :ok, location: @cryptocurrency }
       else
         format.html { render :edit }
@@ -45,7 +45,7 @@ class CryptocurrenciesController < ApplicationController
   def destroy
     @cryptocurrency.destroy
     respond_to do |format|
-      format.html { redirect_to cryptocurrencies_url, notice: 'Cryptocurrency was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Cryptocurrency was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
