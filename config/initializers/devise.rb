@@ -273,7 +273,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  env_creds = Rails.application.credentials[Rails.env.to_sym] || {}
+  env_creds = Rails.application.credentials
 
   # %i[facebook twitter github google].each do |provider|
   #   if options = env_creds[provider]
