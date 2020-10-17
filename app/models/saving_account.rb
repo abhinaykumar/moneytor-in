@@ -27,7 +27,16 @@ class SavingAccount < ApplicationRecord
 
   default_scope { includes(:listed_bank) }
 
+  after_commit :calculate_sum_of_investment
+
   def self.sum_of_investment
     sum(:amount_saved)
+  end
+
+  private
+
+  def calculate_sum_of_investment
+    portfolio.update! sum_of_investment_in_saving_accounts: self.class.where(portfolio: portfolio)
+                                                                .sum(:amount_saved)
   end
 end

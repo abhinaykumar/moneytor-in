@@ -29,6 +29,8 @@ class MutualFund < ApplicationRecord
 
   after_validation :calculate_units
 
+  after_commit :calculate_sum_of_investment
+
   def self.sum_of_investment
     sum(:investment_amount)
   end
@@ -37,5 +39,10 @@ class MutualFund < ApplicationRecord
 
   def calculate_units
     self.units = investment_amount / at_nav
+  end
+
+  def calculate_sum_of_investment
+    portfolio.update! sum_of_investment_in_mutual_funds: self.class.where(portfolio: portfolio)
+                                                             .sum(:investment_amount)
   end
 end
