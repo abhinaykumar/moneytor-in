@@ -14,5 +14,5 @@
 #  index_listed_cryptocurrencies_on_name  (name)
 #
 class ListedCryptocurrency < ApplicationRecord
-  has_many :cryptocurrencies
+  has_many :cryptocurrencies, dependent: :destroy
 end

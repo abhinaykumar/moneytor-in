@@ -17,5 +17,5 @@
 #  index_listed_stocks_on_name  (name)
 #
 class ListedStock < ApplicationRecord
-  has_many :stocks
+  has_many :stocks, dependent: :destroy
 end

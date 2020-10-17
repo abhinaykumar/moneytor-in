@@ -23,10 +23,10 @@
 class Portfolio < ApplicationRecord
   belongs_to :user
 
-  has_many :stocks
-  has_many :mutual_funds
-  has_many :saving_accounts
-  has_many :cryptocurrencies
+  has_many :stocks, dependent: :destroy
+  has_many :mutual_funds, dependent: :destroy
+  has_many :saving_accounts, dependent: :destroy
+  has_many :cryptocurrencies, dependent: :destroy
 
   scope :default, -> { find_by(name: 'default') }
 end

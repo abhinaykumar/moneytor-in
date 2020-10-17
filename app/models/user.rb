@@ -27,15 +27,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable,
          omniauth_providers: [:google_oauth2]
 
-  has_one_attached :avatar
+  has_one_attached :avatar, dependent: :destroy
   has_person_name
 
-  has_many :notifications, foreign_key: :recipient_id
-  has_many :services
+  has_many :notifications, foreign_key: :recipient_id, dependent: :destroy
+  has_many :services, dependent: :destroy
 
-  has_many :portfolios
+  has_many :portfolios, dependent: :destroy
 
-  has_many :auth_tokens
+  has_many :auth_tokens, dependent: :destroy
 
   after_create :create_default_porfolio
 

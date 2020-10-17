@@ -10,6 +10,7 @@
 #
 class AssetClass < ApplicationRecord
   validates :name, presence: true
+
   after_validation :set_internal_name
   after_create :add_asset_to_portfolio
   after_destroy :remove_asset_from_portfolio

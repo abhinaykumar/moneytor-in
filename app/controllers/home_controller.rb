@@ -2,7 +2,6 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # TODO: Portfolio should have a method 'sum_of_all_investments'
     default_portfolio = current_user.portfolios.default
     @total_investment_in_portfolio = 0
     @asset_classes = AssetClass.select(:name, :internal_name).order(:created_at)

@@ -15,5 +15,5 @@
 #  index_listed_banks_on_name  (name)
 #
 class ListedBank < ApplicationRecord
-  has_many :saving_accounts
+  has_many :saving_accounts, dependent: :destroy
 end

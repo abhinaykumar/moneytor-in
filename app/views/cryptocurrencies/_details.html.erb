@@ -1,30 +1,32 @@
 <div class="tab-pane fade <%= show %> <%= active %>" id=<%= "nav-#{asset_class.internal_name}" %> role="tabpanel" aria-labelledby=<%= "nav-#{asset_class.internal_name}-tab" %>>
-    <table class="table table-striped table-bordered table-hover" cellspacing="0">
-        <thead class="thead-dark">
-            <tr>
-                <th>Name</th>
-                <th>Date of Investment</th>
-                <th>Current Market Price</th>
-                <th>Buy Price</th>
-                <th>Qty.</th>
-                <th>Investment Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% asset[:items].each do |stock| %>
-            <tr>
-                <td><%= stock.listed_cryptocurrency.name %></td>
-                <td><%= stock.investment_date %></td>
-                <td><%= stock.listed_cryptocurrency.current_market_price&.round(2) %></td>
-                <td><%= stock.at_price&.round(2) %></td>
-                <td><%= stock.quantity %></td>
-                <td><%= stock.investment_amount&.round(2) %></td>
-            </tr>
-            <% end %>
-            <tr>
-                <td colspan="5"><b>Total Investment:</b></td>
-                <td><%= total&.round(2) %></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover" cellspacing="0">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Date of Investment</th>
+                    <th>Current Market Price</th>
+                    <th>Buy Price</th>
+                    <th>Qty.</th>
+                    <th>Investment Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% asset[:items].each do |stock| %>
+                <tr>
+                    <td><%= stock.listed_cryptocurrency.name %></td>
+                    <td><%= stock.investment_date %></td>
+                    <td><%= stock.listed_cryptocurrency.current_market_price&.round(2) %></td>
+                    <td><%= stock.at_price&.round(2) %></td>
+                    <td><%= stock.quantity %></td>
+                    <td><%= stock.investment_amount&.round(2) %></td>
+                </tr>
+                <% end %>
+                <tr>
+                    <td colspan="5"><b>Total Investment:</b></td>
+                    <td><%= total&.round(2) %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

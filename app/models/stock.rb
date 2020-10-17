@@ -34,8 +34,8 @@ class Stock < ApplicationRecord
   after_validation :calculate_investment_amount
   after_commit :calculate_sum_of_investment
 
-  def self.sum_of_investment
-    sum(:investment_amount)
+  def owner?(user_id)
+    portfolio.user_id == user_id
   end
 
   private
@@ -45,7 +45,7 @@ class Stock < ApplicationRecord
   end
 
   def calculate_sum_of_investment
-    portfolio.update! sum_of_investment_in_stocks: self.class.where(portfolio: portfolio)
-                                                       .sum(:investment_amount)
+    portfolio.update sum_of_investment_in_stocks: self.class.where(portfolio: portfolio)
+                                                      .sum(:investment_amount)
   end
 end
