@@ -1,5 +1,7 @@
 class CryptocurrenciesController < ApplicationController
-  before_action :set_cryptocurrency, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_cryptocurrency, only: %i[edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   # GET /cryptocurrencies/new
   def new
@@ -14,7 +16,6 @@ class CryptocurrenciesController < ApplicationController
   # POST /cryptocurrencies.json
   def create
     @cryptocurrency = current_user.portfolios.default.cryptocurrencies.build(cryptocurrency_params)
-
     respond_to do |format|
       if @cryptocurrency.save
         format.html { redirect_to root_path, notice: 'Cryptocurrency was successfully created.' }
@@ -51,13 +52,18 @@ class CryptocurrenciesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cryptocurrency
-      @cryptocurrency = Cryptocurrency.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def cryptocurrency_params
-      params.require(:cryptocurrency).permit(:investment_date, :investment_amount, :quantity, :at_price, :listed_cryptocurrency_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cryptocurrency
+    @cryptocurrency = Cryptocurrency.find(params[:id])
+  end
+
+  def authorize_user
+    authorize @cryptocurrency, :modify?
+  end
+
+  # Only allow a list of trusted parameters through.
+  def cryptocurrency_params
+    params.require(:cryptocurrency).permit(:investment_date, :investment_amount, :quantity, :at_price, :listed_cryptocurrency_id)
+  end
 end

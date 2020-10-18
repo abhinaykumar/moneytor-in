@@ -55,32 +55,43 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Admin related
 gem 'administrate', github: 'excid3/administrate', branch: 'jumpstart'
+
+# Styling
 gem 'bootstrap', '~> 4.5'
+gem 'font-awesome-sass', '~> 5.13'
+
+# Authentication / Authorization
 gem 'devise', '~> 4.7', '>= 4.7.0'
 gem 'devise-bootstrapped', github: 'excid3/devise-bootstrapped', branch: 'bootstrap4'
 gem 'devise_masquerade', '~> 1.2'
-gem 'font-awesome-sass', '~> 5.13'
-gem 'friendly_id', '~> 5.3'
-gem 'mini_magick', '~> 4.10', '>= 4.10.1'
-gem 'name_of_person', '~> 1.1'
+gem 'jwt', '~> 2.2', '>= 2.2.1'
 gem 'omniauth-facebook', '~> 6.0'
 gem 'omniauth-github', '~> 1.4'
 gem 'omniauth-twitter', '~> 1.4'
 gem 'omniauth-google-oauth2'
-gem 'sidekiq', '~> 6.0', '>= 6.0.3'
+gem 'pundit'
+
+# Utility
+gem 'friendly_id', '~> 5.3'
+gem 'httparty'
+gem 'image_processing'
+gem 'mini_magick', '~> 4.10', '>= 4.10.1'
+gem 'name_of_person', '~> 1.1'
+gem 'nokogiri'
 gem 'sitemap_generator', '~> 6.1', '>= 6.1.2'
 gem 'whenever', require: false
-gem 'image_processing'
 
+# Background Job
+gem 'sidekiq', '~> 6.0', '>= 6.0.3'
 
-gem 'jwt', '~> 2.2', '>= 2.2.1'
+# API
+gem 'interactor-rails', '~> 2.2', '>= 2.2.1'
 gem 'jsonapi-serializer', '~> 2.1'
 
-gem 'httparty'
 
-gem 'nokogiri'
 
-gem 'interactor-rails', '~> 2.2', '>= 2.2.1'
 
-gem 'pundit'
+
+

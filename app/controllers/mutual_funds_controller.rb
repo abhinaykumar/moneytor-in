@@ -1,5 +1,7 @@
 class MutualFundsController < ApplicationController
-  before_action :set_mutual_fund, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_mutual_fund, only: %i[edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   # GET /mutual_funds/new
   def new
@@ -57,6 +59,10 @@ class MutualFundsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_mutual_fund
     @mutual_fund = MutualFund.find(params[:id])
+  end
+
+  def authorize_user
+    authorize @mutual_fund, :modify?
   end
 
   # Only allow a list of trusted parameters through.

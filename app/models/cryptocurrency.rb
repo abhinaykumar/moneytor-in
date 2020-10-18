@@ -35,6 +35,10 @@ class Cryptocurrency < ApplicationRecord
 
   after_commit :calculate_sum_of_investment
 
+  def owner?(user_id)
+    portfolio.user_id == user_id
+  end
+
   private
 
   def calculate_investment_amount

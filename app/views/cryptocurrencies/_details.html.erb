@@ -9,17 +9,29 @@
                     <th>Buy Price</th>
                     <th>Qty.</th>
                     <th>Investment Amount</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <% asset[:items].each do |stock| %>
+                <% asset[:items].each do |cryptocurrency| %>
                 <tr>
-                    <td><%= stock.listed_cryptocurrency.name %></td>
-                    <td><%= stock.investment_date %></td>
-                    <td><%= stock.listed_cryptocurrency.current_market_price&.round(2) %></td>
-                    <td><%= stock.at_price&.round(2) %></td>
-                    <td><%= stock.quantity %></td>
-                    <td><%= stock.investment_amount&.round(2) %></td>
+                    <td><%= cryptocurrency.listed_cryptocurrency.name %></td>
+                    <td><%= cryptocurrency.investment_date %></td>
+                    <td><%= cryptocurrency.listed_cryptocurrency.current_market_price&.round(2) %></td>
+                    <td><%= cryptocurrency.at_price&.round(2) %></td>
+                    <td><%= cryptocurrency.quantity %></td>
+                    <td><%= cryptocurrency.investment_amount&.round(2) %></td>
+                    <td>
+                        <%= link_to edit_cryptocurrency_path(cryptocurrency), class: 'nounderline' do %>
+                        <i class="far fa-edit" style="color: Dodgerblue;"></i>
+                        <% end %>
+
+                        <%= link_to cryptocurrency, method: :delete, data: { confirm: "Are you sure?" } do %>
+                        <span style="color: Tomato;">
+                            <i class="fas fa-trash-alt danger"></i>
+                        </span>
+                        <% end %>
+                    </td>
                 </tr>
                 <% end %>
                 <tr>

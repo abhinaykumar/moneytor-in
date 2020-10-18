@@ -1,5 +1,7 @@
 class SavingAccountsController < ApplicationController
-  before_action :set_saving_account, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_saving_account, only: %i[edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   # GET /saving_accounts/new
   def new
@@ -51,13 +53,18 @@ class SavingAccountsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_saving_account
-      @saving_account = SavingAccount.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def saving_account_params
-      params.require(:saving_account).permit(:branch_name, :amount_saved, :rate_of_interest, :listed_bank_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_saving_account
+    @saving_account = SavingAccount.find(params[:id])
+  end
+
+  def authorize_user
+    authorize @saving_account, :modify?
+  end
+
+  # Only allow a list of trusted parameters through.
+  def saving_account_params
+    params.require(:saving_account).permit(:branch_name, :amount_saved, :rate_of_interest, :listed_bank_id)
+  end
 end

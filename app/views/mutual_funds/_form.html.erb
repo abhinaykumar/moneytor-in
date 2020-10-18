@@ -35,16 +35,12 @@
 <div class="form-group">
     <% if mutual_fund.persisted? %>
     <div class="float-right">
-        <%= link_to 'Destroy', mutual_fund, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Delete', mutual_fund, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
     </div>
     <% end %>
 
-    <%= form.submit "Add Mutual Fund", class: 'btn btn-primary' %>
+    <%= form.submit class: 'btn btn-primary' %>
 
-    <% if mutual_fund.persisted? %>
     <%= link_to "Cancel", root_path, class: "btn btn-link" %>
-    <% else %>
-    <%= link_to "Cancel", root_path, class: "btn btn-link" %>
-    <% end %>
 </div>
 <% end %>

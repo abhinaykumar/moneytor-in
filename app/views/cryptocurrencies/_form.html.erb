@@ -43,17 +43,13 @@
 
 <div class="form-group">
     <% if cryptocurrency.persisted? %>
-    <div class="float-right">
-        <%= link_to 'Destroy', cryptocurrency, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
-    </div>
+        <div class="float-right">
+            <%= link_to 'Delete', cryptocurrency, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+        </div>
     <% end %>
 
     <%= form.submit class: 'btn btn-primary' %>
 
-    <% if cryptocurrency.persisted? %>
     <%= link_to "Cancel", root_path, class: "btn btn-link" %>
-    <% else %>
-    <%= link_to "Cancel", root_path, class: "btn btn-link" %>
-    <% end %>
 </div>
 <% end %>

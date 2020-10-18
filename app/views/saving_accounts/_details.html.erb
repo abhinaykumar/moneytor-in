@@ -7,6 +7,7 @@
                     <th>Rate of Interest</th>
                     <th>Branch</th>
                     <th>Amount Saved</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,17 @@
                     <td><%= "#{saving_account.rate_of_interest&.round(2)} %" %></td>
                     <td><%= saving_account.branch_name %></td>
                     <td><%= saving_account.amount_saved&.round(2) %></td>
+                    <td>
+                        <%= link_to edit_saving_account_path(saving_account), class: 'nounderline' do %>
+                        <i class="far fa-edit" style="color: Dodgerblue;"></i>
+                        <% end %>
+
+                        <%= link_to saving_account, method: :delete, data: { confirm: "Are you sure?" } do %>
+                        <span style="color: Tomato;">
+                            <i class="fas fa-trash-alt danger"></i>
+                        </span>
+                        <% end %>
+                    </td>
                 </tr>
                 <% end %>
                 <tr>

@@ -1,4 +1,4 @@
-class StockPolicy < ApplicationPolicy
+class SavingAccountPolicy < ApplicationPolicy
   def modify?
     record.owner?(user.id)
   end

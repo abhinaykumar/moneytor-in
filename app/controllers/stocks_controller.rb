@@ -1,6 +1,7 @@
 class StocksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_stock, only: %i[edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   # GET /stocks/new
   def new
@@ -9,7 +10,6 @@ class StocksController < ApplicationController
 
   # GET /stocks/1/edit
   def edit
-    authorize @stock, :edit?
   end
 
   # POST /stocks
@@ -31,8 +31,6 @@ class StocksController < ApplicationController
   # PATCH/PUT /stocks/1
   # PATCH/PUT /stocks/1.json
   def update
-    authorize @stock, :update?
-
     respond_to do |format|
       if @stock.update(stock_params)
         format.html { redirect_to root_path, notice: 'Stock was successfully updated.' }
@@ -47,8 +45,6 @@ class StocksController < ApplicationController
   # DELETE /stocks/1
   # DELETE /stocks/1.json
   def destroy
-    authorize @stock, :destroy?
-
     @stock.destroy
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Stock was successfully destroyed.' }
@@ -60,6 +56,10 @@ class StocksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_stock
     @stock = Stock.find(params[:id])
+  end
+
+  def authorize_user
+    authorize @stock, :modify?
   end
 
   # Only allow a list of trusted parameters through.
