@@ -22,11 +22,11 @@
                     <td><%= stock.quantity %></td>
                     <td><%= stock.investment_amount&.round(2) %></td>
                     <td>
-                        <%= link_to edit_stock_path(stock), class: 'nounderline' do %>
-                            <i class="far fa-edit" style="color: Dodgerblue;"></i>
+                        <%= link_to edit_stock_path(stock), class: 'nounderline', data: { toggle: 'tooltip', placement: 'bottom' }, title: 'Edit' do %>
+                        <i class="far fa-edit" style="color: Dodgerblue;"></i>
                         <% end %>
-
-                        <%= link_to stock, method: :delete, data: { confirm: "Are you sure?" } do %>
+                        <b>|</b>
+                        <%= link_to stock, method: :delete, data: { confirm: 'Are you sure?', toggle: 'tooltip', placement: 'bottom' }, title: 'Delete' do %>
                         <span style="color: Tomato;">
                             <i class="fas fa-trash-alt danger"></i>
                         </span>

@@ -20,11 +20,11 @@
                     <td><%= mutual_fund.units&.round(2) %></td>
                     <td><%= mutual_fund.investment_amount&.round(2) %></td>
                     <td>
-                        <%= link_to edit_mutual_fund_path(mutual_fund), class: 'nounderline' do %>
+                        <%= link_to edit_mutual_fund_path(mutual_fund), class: 'nounderline', data: { toggle: 'tooltip', placement: 'bottom' }, title: 'Edit' do %>
                         <i class="far fa-edit" style="color: Dodgerblue;"></i>
                         <% end %>
-
-                        <%= link_to mutual_fund, method: :delete, data: { confirm: "Are you sure?" } do %>
+                        <b>|</b>
+                        <%= link_to mutual_fund, method: :delete, data: { confirm: 'Are you sure?', toggle: 'tooltip', placement: 'bottom' }, title: 'Delete' do %>
                         <span style="color: Tomato;">
                             <i class="fas fa-trash-alt danger"></i>
                         </span>
