@@ -5,5 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AssetClass.create(name: 'Stocks')
-AssetClass.create(name: 'Mutual Funds')
+AssetClass.create!(name: 'Stock')
+AssetClass.create!(name: 'Mutual Fund')
+AssetClass.create!(name: 'Cryptocurrency')
+AssetClass.create!(name: 'Saving Account')
